@@ -1,0 +1,40 @@
+from nltk.stem import PorterStemmer
+
+stemmer = PorterStemmer()
+
+words = ["played", "player", "playing"]
+
+print("{:<10} {:<10} {:<10} {:<15} {:<10}".format(
+    "Word", "Stem", "Affix", "Type", "Normalized"))
+
+print("-" * 60)
+
+for word in words:
+
+    stem = stemmer.stem(word)
+
+    if word.endswith("ed"):
+        affix = "ed"
+        t = "Inflectional"
+
+    elif word.endswith("ing"):
+        affix = "ing"
+        t = "Inflectional"
+
+    elif word.endswith("er"):
+        affix = "er"
+        t = "Derivational"
+
+    else:
+        affix = "-"
+        t = "-"
+
+    print("{:<10} {:<10} {:<10} {:<15} {:<10}".format(
+        word, stem, affix, t, stem))
+Output
+Word       Stem       Affix     Type            Normalized
+------------------------------------------------------------
+played     play       ed        Inflectional    play
+player     player     er        Derivational    player
+playing    play       ing       Inflectional    play
+

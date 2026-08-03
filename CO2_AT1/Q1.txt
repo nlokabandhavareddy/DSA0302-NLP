@@ -1,0 +1,33 @@
+# Morphological Analysis using Porter Stemmer
+
+from nltk.stem import PorterStemmer
+
+# Create stemmer object
+stemmer = PorterStemmer()
+
+# Input words
+words = ["connected", "connecting", "connection"]
+
+print("Morphological Analysis")
+print("-" * 30)
+
+# Analyze each word
+for word in words:
+    root = stemmer.stem(word)
+    print("Original Word :", word)
+    print("Root Word     :", root)
+    print()
+
+
+Output
+Morphological Analysis
+------------------------------
+Original Word : connected
+Root Word     : connect
+
+Original Word : connecting
+Root Word     : connect
+
+Original Word : connection
+Root Word     : connect
+ 

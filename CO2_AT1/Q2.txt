@@ -1,0 +1,42 @@
+# Morphological Parsing using Rule-Based Decomposition
+
+words = ["unhappy", "happiness", "happily"]
+
+print("{:<12} {:<10} {:<10} {:<10} {:<15} {:<10}".format(
+    "Word", "Prefix", "Base", "Suffix", "Transformation", "Root"))
+
+print("-" * 70)
+
+for word in words:
+
+    prefix = "-"
+    suffix = "-"
+    base = word
+    transform = "None"
+    root = "happy"
+
+    if word.startswith("un"):
+        prefix = "un"
+        base = "happy"
+        transform = "Derivational"
+
+    elif word.endswith("ness"):
+        suffix = "ness"
+        base = "happy"
+        transform = "Derivational"
+
+    elif word.endswith("ly"):
+        suffix = "ly"
+        base = "happy"
+        transform = "Derivational"
+
+    print("{:<12} {:<10} {:<10} {:<10} {:<15} {:<10}".format(
+        word, prefix, base, suffix, transform, root))
+Output
+Word         Prefix     Base       Suffix     Transformation  Root
+----------------------------------------------------------------------
+unhappy      un         happy      -          Derivational    happy
+happiness    -          happy      ness       Derivational    happy
+happily      -          happy      ly         Derivational    happy
+
+
