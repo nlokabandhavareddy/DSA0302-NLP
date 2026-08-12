@@ -1,0 +1,206 @@
+# -----------------------------------------
+# CASE STUDY 2
+# AI-Powered Customer Support Chatbot
+# -----------------------------------------
+
+print("==============================================")
+print("AI-POWERED CUSTOMER SUPPORT CHATBOT")
+print("==============================================")
+# 1. POS TAGGING
+# -----------------------------------------
+
+print("1. POS TAGGING")
+print("------------------------------")
+
+sentence1 = [
+    ("Book", "VB"),
+    ("a", "DT"),
+    ("flight", "NN"),
+    ("ticket", "NN"),
+    ("now", "RB")
+]
+
+sentence2 = [
+    ("This", "DT"),
+    ("book", "NN"),
+    ("is", "VBZ"),
+    ("interesting", "JJ")
+]
+
+print("Sentence 1:")
+for word, tag in sentence1:
+    print(word, "/", tag)
+
+print()
+
+print("Sentence 2:")
+for word, tag in sentence2:
+    print(word, "/", tag)
+
+print()
+
+print("Explanation:")
+print("'Book' is a Verb (VB) in Sentence 1 because")
+print("it represents an action.")
+print()
+print("'book' is a Noun (NN) in Sentence 2 because")
+print("it refers to a thing/object.")
+
+# -----------------------------------------
+# 2. HMM PROBABILITY
+# -----------------------------------------
+
+print()
+print("2. HMM TAGGING")
+print("------------------------------")
+
+p_book_given_vb = 0.6
+p_book_given_nn = 0.4
+
+p_start_vb = 0.5
+p_start_nn = 0.5
+
+# HMM likelihood
+vb_probability = p_start_vb * p_book_given_vb
+nn_probability = p_start_nn * p_book_given_nn
+
+print("P(book | VB) =", p_book_given_vb)
+print("P(book | NN) =", p_book_given_nn)
+
+print("P(Start -> VB) =", p_start_vb)
+print("P(Start -> NN) =", p_start_nn)
+
+print()
+print("VB score =", vb_probability)
+print("NN score =", nn_probability)
+
+if vb_probability > nn_probability:
+    print("HMM Prediction: book = VB")
+else:
+    print("HMM Prediction: book = NN")
+
+# -----------------------------------------
+# 3. RULE-BASED VS HMM
+# -----------------------------------------
+
+print()
+print("3. RULE-BASED VS HMM TAGGING")
+print("------------------------------")
+
+print("Rule-Based Tagging:")
+print("- Uses manually written grammar rules.")
+print("- Easy to understand.")
+print("- Requires many rules for large datasets.")
+print()
+
+print("Stochastic / HMM Tagging:")
+print("- Uses probabilities from training data.")
+print("- Handles ambiguity using context.")
+print("- Suitable for large-scale applications.")
+print()
+
+print("Recommendation:")
+print("HMM-based tagging is more suitable for")
+print("large-scale chatbot deployment because it")
+print("can learn probabilities and handle ambiguity.")
+
+# -----------------------------------------
+# 4. ROLE OF POS TAGSETS
+# -----------------------------------------
+
+print()
+print("4. ROLE OF POS TAGSETS")
+print("------------------------------")
+
+print("Standard POS tags provide a consistent")
+print("representation of grammatical categories.")
+
+print()
+print("Examples:")
+print("VB  = Verb")
+print("NN  = Noun")
+print("JJ  = Adjective")
+print("RB  = Adverb")
+print("DT  = Determiner")
+print("VBZ = Verb, 3rd person singular")
+
+print()
+print("POS tagging helps the chatbot to:")
+print("1. Understand user intent.")
+print("2. Identify actions and objects.")
+print("3. Generate better responses.")
+print("4. Resolve word ambiguity.")
+  
+  OUTPUT
+  ==============================================
+AI-POWERED CUSTOMER SUPPORT CHATBOT
+==============================================
+1. POS TAGGING
+------------------------------
+Sentence 1:
+Book / VB
+a / DT
+flight / NN
+ticket / NN
+now / RB
+
+Sentence 2:
+This / DT
+book / NN
+is / VBZ
+interesting / JJ
+
+Explanation:
+'Book' is a Verb (VB) in Sentence 1 because
+it represents an action.
+
+'book' is a Noun (NN) in Sentence 2 because
+it refers to a thing/object.
+
+2. HMM TAGGING
+------------------------------
+P(book | VB) = 0.6
+P(book | NN) = 0.4
+P(Start -> VB) = 0.5
+P(Start -> NN) = 0.5
+
+VB score = 0.3
+NN score = 0.2
+HMM Prediction: book = VB
+
+3. RULE-BASED VS HMM TAGGING
+------------------------------
+Rule-Based Tagging:
+- Uses manually written grammar rules.
+- Easy to understand.
+- Requires many rules for large datasets.
+
+Stochastic / HMM Tagging:
+- Uses probabilities from training data.
+- Handles ambiguity using context.
+- Suitable for large-scale applications.
+
+Recommendation:
+HMM-based tagging is more suitable for
+large-scale chatbot deployment because it
+can learn probabilities and handle ambiguity.
+
+4. ROLE OF POS TAGSETS
+------------------------------
+Standard POS tags provide a consistent
+representation of grammatical categories.
+
+Examples:
+VB  = Verb
+NN  = Noun
+JJ  = Adjective
+RB  = Adverb
+DT  = Determiner
+VBZ = Verb, 3rd person singular
+
+POS tagging helps the chatbot to:
+1. Understand user intent.
+2. Identify actions and objects.
+3. Generate better responses.
+4. Resolve word ambiguity.
+  
