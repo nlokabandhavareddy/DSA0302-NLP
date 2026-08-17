@@ -1,0 +1,81 @@
+import pandas as pd
+import re
+from nltk.stem import PorterStemmer
+from nltk.tokenize import word_tokenize
+import nltk
+# Download tokenizer resources
+nltk.download(&quot;punkt&quot;)
+nltk.download(&quot;punkt_tab&quot;)
+# -----------------------------
+# Load dataset
+# -----------------------------
+FILE = &quot;PubMed20k.csv&quot;
+data = pd.read_csv(FILE)
+# Find text column automatically
+possible_columns = [&quot;text&quot;, &quot;Text&quot;, &quot;abstract&quot;, &quot;Abstract&quot;, &quot;sentence&quot;]
+text_column = None
+for col in possible_columns:
+if col in data.columns:
+text_column = col
+break
+if text_column is None:
+raise ValueError(
+&quot;No text column found. Rename your dataset text column to &#39;text&#39;.&quot;
+)
+# -----------------------------
+# Preprocessing function
+# -----------------------------
+
+def preprocess(text):
+text = str(text).lower()
+text = re.sub(r&quot;[^a-z\s]&quot;, &quot; &quot;, text)
+tokens = word_tokenize(text)
+tokens = [
+word for word in tokens
+if word.isalpha()
+]
+return tokens
+
+# -----------------------------
+# Porter Stemmer
+# -----------------------------
+stemmer = PorterStemmer()
+records = []
+for text in data[text_column].dropna().head(1000):
+tokens = preprocess(text)
+for word in tokens:
+stem = stemmer.stem(word)
+records.append({
+&quot;Original&quot;: word,
+&quot;Stem&quot;: stem
+})
+
+result = pd.DataFrame(records)
+# Remove duplicate word-stem pairs
+result = result.drop_duplicates()
+print(&quot;\nOriginal words and Porter stems:&quot;)
+print(result.head(30))
+# Save results
+result.to_csv(&quot;biomedical_stemming_results.csv&quot;, index=False)
+# -----------------------------
+# Investigate important words
+# -----------------------------
+target_words = [
+&quot;infect&quot;,
+&quot;infected&quot;,
+&quot;infection&quot;,
+&quot;infectious&quot;
+]
+
+print(&quot;\nTarget word analysis:&quot;)
+for word in target_words:
+stem = stemmer.stem(word)
+print(f&quot;{word:15} -&gt; {stem}&quot;)
+
+
+output
+Target word analysis:
+infect -&gt; infect
+infected -&gt; infect
+infection -&gt; infect
+infectious -&gt; infecti

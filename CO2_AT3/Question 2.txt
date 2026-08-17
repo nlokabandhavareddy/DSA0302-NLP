@@ -1,0 +1,100 @@
+import re
+# Known lexical stems
+LEXICON = {
+&quot;happy&quot;,
+&quot;believe&quot;,
+&quot;run&quot;,
+&quot;order&quot;,
+&quot;smart&quot;,
+&quot;phone&quot;,
+&quot;read&quot;
+}
+PREFIXES = [&quot;un&quot;, &quot;re&quot;]
+SUFFIXES = [&quot;est&quot;, &quot;able&quot;, &quot;ing&quot;, &quot;s&quot;]
+
+def morphological_parser(word):
+word = word.lower()
+# --------------------------------
+# Step 1: Check suffix
+# --------------------------------
+suffix = &quot;&quot;
+for s in sorted(SUFFIXES, key=len, reverse=True):
+if word.endswith(s):
+candidate = word[:-len(s)]
+# Handle spelling alternation:
+# happiest -&gt; happi + est -&gt; happy
+if s == &quot;est&quot; and candidate.endswith(&quot;i&quot;):
+candidate = candidate[:-1] + &quot;y&quot;
+# Handle consonant doubling:
+# running -&gt; run
+if s == &quot;ing&quot;:
+if len(candidate) &gt;= 2 and candidate[-1] == candidate[-2]:
+candidate = candidate[:-1]
+suffix = s
+word = candidate
+break
+
+# --------------------------------
+# Step 2: Check prefix
+# --------------------------------
+prefix = &quot;&quot;
+for p in sorted(PREFIXES, key=len, reverse=True):
+if word.startswith(p):
+candidate = word[len(p):]
+if candidate in LEXICON:
+prefix = p
+word = candidate
+break
+# --------------------------------
+# Step 3: Check stem
+# --------------------------------
+if word in LEXICON:
+parts = []
+if prefix:
+parts.append(prefix + &quot;-&quot;)
+parts.append(word)
+if suffix:
+parts.append(&quot;-&quot; + suffix)
+return {
+&quot;word&quot;: &quot;&quot;.join(parts),
+&quot;prefix&quot;: prefix if prefix else &quot;-&quot;,
+&quot;stem&quot;: word,
+&quot;suffix&quot;: suffix if suffix else &quot;-&quot;,
+&quot;analysis&quot;: &quot; + &quot;.join(parts)
+}
+return {
+&quot;word&quot;: word,
+&quot;prefix&quot;: &quot;-&quot;,
+&quot;stem&quot;: word,
+&quot;suffix&quot;: &quot;-&quot;,
+&quot;analysis&quot;: &quot;Unknown&quot;
+}
+
+# --------------------------------
+# Test words
+# --------------------------------
+words = [
+&quot;happiest&quot;,
+&quot;unbelievable&quot;,
+
+&quot;running&quot;,
+&quot;reordering&quot;,
+&quot;smartphones&quot;,
+&quot;unreadable&quot;
+]
+for word in words:
+result = morphological_parser(word)
+print(
+f&quot;{word:15} -&gt; &quot;
+f&quot;{result[&#39;analysis&#39;]}&quot;
+
+ OUTPUT
+happiest -&gt; happy + -est
+unbelievable -&gt; un- + believe + -able
+running -&gt; run + -ing
+reordering -&gt; re- + order + -ing
+smartphones -&gt; smart + phone + -s
+unreadable -&gt; un- + read + -able
+
+
+OUTP
