@@ -1,0 +1,61 @@
+# CFG vs PCFG vs Neural Parsing
+
+sentence = "She saw the man with a telescope"
+
+print("===== SENTENCE =====")
+print(sentence)
+
+print()
+print("===== CFG =====")
+print("Parse 1: She used the telescope to see the man")
+print("Parse 2: The man had the telescope")
+print("Problem : Both structures can be valid")
+
+print()
+print("===== PCFG =====")
+print("Parse 1 Probability: 0.70")
+print("Parse 2 Probability: 0.30")
+print("Selected Parse: She used the telescope")
+
+print()
+print("===== NEURAL PARSING =====")
+print("Uses contextual information")
+print("Uses learned language patterns")
+print("Can use surrounding context")
+print("Selected Meaning: Depends on context")
+
+print()
+print("===== COMPARISON =====")
+print("CFG    : Generates possible structures")
+print("PCFG   : Ranks structures using probabilities")
+print("Neural : Uses learned contextual information")
+print("Best for real-world NLP: Neural Parsing")
+
+
+
+OUTPUT
+
+===== SENTENCE =====
+She saw the man with a telescope
+
+===== CFG =====
+Parse 1: She used the telescope to see the man
+Parse 2: The man had the telescope
+Problem : Both structures can be valid
+
+===== PCFG =====
+Parse 1 Probability: 0.70
+Parse 2 Probability: 0.30
+Selected Parse: She used the telescope
+
+===== NEURAL PARSING =====
+Uses contextual information
+Uses learned language patterns
+Can use surrounding context
+Selected Meaning: Depends on context
+
+===== COMPARISON =====
+CFG    : Generates possible structures
+PCFG   : Ranks structures using probabilities
+Neural : Uses learned contextual information
+Best for real-world NLP: Neural Parsing

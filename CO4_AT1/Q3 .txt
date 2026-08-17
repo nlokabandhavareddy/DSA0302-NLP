@@ -1,0 +1,47 @@
+# Word Sense Disambiguation
+
+queries = {
+    "Apple accessories": {
+        "sense": "Technology Brand",
+        "result": "iPhone Charger"
+    },
+    "Mouse wireless": {
+        "sense": "Computer Device",
+        "result": "Bluetooth Mouse"
+    },
+    "Java tutorial": {
+        "sense": "Programming Language",
+        "result": "Coding Lessons"
+    },
+    "Python course": {
+        "sense": "Programming Language",
+        "result": "Software Development Training"
+    }
+}
+
+for query, data in queries.items():
+    print("Query :", query)
+    print("Correct Sense :", data["sense"])
+    print("Clicked Result:", data["result"])
+    print()
+
+
+Output
+Query : Apple accessories
+Correct Sense : Technology Brand
+Clicked Result: iPhone Charger
+
+
+Query : Mouse wireless
+Correct Sense : Computer Device
+Clicked Result: Bluetooth Mouse
+
+
+Query : Java tutorial
+Correct Sense : Programming Language
+Clicked Result: Coding Lessons
+
+
+Query : Python course
+Correct Sense : Programming Language
+Clicked Result: Software Development Training

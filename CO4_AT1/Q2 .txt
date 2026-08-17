@@ -1,0 +1,59 @@
+# Smart Manufacturing using Predicate Logic
+
+machines = {
+    "M1": "Active",
+    "M2": "Active",
+    "M3": "Maintenance",
+    "M4": "Active"Output
+M1 : Active
+  Producing = True
+M2 : Active
+  Producing = True
+M3 : Maintenance
+  Producing = False
+M4 : Active
+  Producing = True
+
+
+Production Status:
+M1 is Producing
+M2 is Producing
+M3 is NOT Producing
+M4 is Producing
+}
+
+for machine, status in machines.items():
+
+    print(machine, ":", status)
+
+    if status == "Active":
+        print("  Producing =", True)
+
+    elif status == "Maintenance":
+        print("  Producing =", False)
+
+print("\nProduction Status:")
+
+for machine, status in machines.items():
+    if status == "Active":
+        print(machine, "is Producing")
+    else:
+        print(machine, "is NOT Producing")
+Output
+M1 : Active
+  Producing = True
+M2 : Active
+  Producing = True
+M3 : Maintenance
+  Producing = False
+M4 : Active
+  Producing = True
+
+
+Production Status:
+M1 is Producing
+M2 is Producing
+M3 is NOT Producing
+M4 is Producing
+
+

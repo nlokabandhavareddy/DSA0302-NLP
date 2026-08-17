@@ -1,0 +1,65 @@
+Program
+# Feature Structures vs Subcategorization Frames
+
+
+print("===== FEATURE STRUCTURES =====")
+
+
+subject = {
+    "word": "She",
+    "number": "singular",
+    "person": "third"
+}
+
+
+verb = {
+    "word": "runs",
+    "number": "singular",
+    "person": "third"
+}
+
+
+print("Subject:", subject)
+print("Verb   :", verb)
+
+
+if subject["number"] == verb["number"] and \
+   subject["person"] == verb["person"]:
+    print("Agreement: Correct")
+else:
+    print("Agreement: Incorrect")
+
+
+print()
+print("===== SUBCATEGORIZATION FRAME =====")
+
+
+print("Verb: give")
+print("Frame: Subject + Verb + Object + Recipient")
+print("Example: The teacher gives a book to the student")
+
+
+print()
+print("===== COMPARISON =====")
+print("Feature Structures      : Handle grammatical features")
+print("Subcategorization Frames: Handle verb argument requirements")
+print("Best for agreement      : Feature Structures")
+print("Best for verb arguments : Subcategorization Frames")
+Output
+===== FEATURE STRUCTURES =====
+Subject: {'word': 'She', 'number': 'singular', 'person': 'third'}
+Verb   : {'word': 'runs', 'number': 'singular', 'person': 'third'}
+Agreement: Correct
+
+
+===== SUBCATEGORIZATION FRAME =====
+Verb: give
+Frame: Subject + Verb + Object + Recipient
+Example: The teacher gives a book to the student
+
+
+===== COMPARISON =====
+Feature Structures      : Handle grammatical features
+Subcategorization Frames: Handle verb argument requirements
+Best for agreement      : Feature Structures
+Best for verb arguments : Subcategorization Frames

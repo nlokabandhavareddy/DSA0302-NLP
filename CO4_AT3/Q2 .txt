@@ -1,0 +1,54 @@
+# Top-Down Parsing vs Earley Parsing
+
+sentence = "Book a flight to Delhi"
+
+print("===== INPUT =====")
+print(sentence)
+
+print()
+print("===== TOP-DOWN PARSING =====")
+print("Starts from the grammar start symbol")
+print("Attempts possible grammar rules")
+print("May require backtracking")
+print("Less suitable for incomplete input")
+
+print()
+print("===== EARLEY PARSING =====")
+print("Uses chart-based parsing")
+print("Stores partial parsing states")
+print("Handles ambiguity")
+print("Handles incomplete input")
+print("Suitable for dynamic input")
+
+print()
+print("===== COMPARISON =====")
+print("Top-Down : Backtracking may increase")
+print("Earley   : Partial states are stored")
+print("Best choice for dynamic input: Earley Parsing")
+
+
+
+Output
+===== INPUT =====
+Book a flight to Delhi
+
+
+===== TOP-DOWN PARSING =====
+Starts from the grammar start symbol
+Attempts possible grammar rules
+May require backtracking
+Less suitable for incomplete input
+
+
+===== EARLEY PARSING =====
+Uses chart-based parsing
+Stores partial parsing states
+Handles ambiguity
+Handles incomplete input
+Suitable for dynamic input
+
+
+===== COMPARISON =====
+Top-Down : Backtracking may increase
+Earley   : Partial states are stored
+Best choice for dynamic input: Earley Parsing

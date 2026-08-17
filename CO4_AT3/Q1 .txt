@@ -1,0 +1,58 @@
+# CFG Tree vs Dependency Parsing
+
+sentence = "The student reads a book"
+
+print("===== CFG TREE =====")
+print("Sentence")
+print(" |")
+print(" +-- NP")
+print(" |    +-- The")
+print(" |    +-- student")
+print(" |")
+print(" +-- VP")
+print("      +-- reads")
+print("      +-- NP")
+print("           +-- a")
+print("           +-- book")
+
+print()
+print("===== DEPENDENCY PARSING =====")
+print("reads -> student  (subject)")
+print("reads -> book     (object)")
+print("book  -> a        (determiner)")
+print("student -> The    (determiner)")
+
+print()
+print("===== COMPARISON =====")
+print("CFG       : Represents hierarchical phrase structure")
+print("Dependency: Represents word-to-word relationships")
+print("Better for word relationships: Dependency Parsing")
+
+
+
+Output
+===== CFG TREE =====
+Sentence
+ |
+ +-- NP
+ |    +-- The
+ |    +-- student
+ |
+ +-- VP
+      +-- reads
+      +-- NP
+           +-- a
+           +-- book
+
+
+===== DEPENDENCY PARSING =====
+reads -> student  (subject)
+reads -> book     (object)
+book  -> a        (determiner)
+student -> The    (determiner)
+
+
+===== COMPARISON =====
+CFG       : Represents hierarchical phrase structure
+Dependency: Represents word-to-word relationships
+Better for word relationships: Dependency Parsing

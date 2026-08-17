@@ -1,0 +1,56 @@
+Program
+# Transition-Based vs Graph-Based Dependency Parsing
+
+
+sentence = "The student reads a book"
+
+
+print("===== TRANSITION-BASED PARSING =====")
+print("Uses a sequence of parsing actions")
+print("SHIFT -> READS")
+print("SHIFT -> STUDENT")
+print("REDUCE -> SUBJECT")
+print("SHIFT -> BOOK")
+print("REDUCE -> OBJECT")
+print("Fast and suitable for large datasets")
+
+
+print()
+print("===== GRAPH-BASED PARSING =====")
+print("Creates possible dependency relationships")
+print("Evaluates possible dependency trees")
+print("Selects the highest-scoring tree")
+print("Usually more computationally expensive")
+
+
+print()
+print("===== COMPARISON =====")
+print("Transition-Based : Fast, sequential decisions")
+print("Graph-Based      : Global tree optimization")
+print("Speed             : Transition-Based is faster")
+print("Global accuracy   : Graph-Based can consider more relationships")
+print("Best for large-scale applications: Transition-Based Parsing")
+Output
+===== TRANSITION-BASED PARSING =====
+Uses a sequence of parsing actions
+SHIFT -> READS
+SHIFT -> STUDENT
+REDUCE -> SUBJECT
+SHIFT -> BOOK
+REDUCE -> OBJECT
+Fast and suitable for large datasets
+
+
+===== GRAPH-BASED PARSING =====
+Creates possible dependency relationships
+Evaluates possible dependency trees
+Selects the highest-scoring tree
+Usually more computationally expensive
+
+
+===== COMPARISON =====
+Transition-Based : Fast, sequential decisions
+Graph-Based      : Global tree optimization
+Speed             : Transition-Based is faster
+Global accuracy   : Graph-Based can consider more relationships
+Best for large-scale applications: Transition-Based Parsing
