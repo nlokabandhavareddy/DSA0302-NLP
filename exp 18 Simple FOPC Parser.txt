@@ -1,0 +1,34 @@
+import re
+
+def parse_fopc(expression):
+    pattern = r'^(forall|exists)\s+([a-zA-Z])\s*\((\w+)\((\w+)\)\)$'
+
+    match = re.match(pattern, expression)
+
+    if match:
+        quantifier = match.group(1)
+        variable = match.group(2)
+        predicate = match.group(3)
+        argument = match.group(4)
+
+        print("Quantifier:", quantifier)
+        print("Variable:", variable)
+        print("Predicate:", predicate)
+        print("Argument:", argument)
+        print("Valid FOPC expression")
+    else:
+        print("Invalid FOPC expression")
+
+
+expression = "forall x (student(x))"
+
+parse_fopc(expression)
+
+
+Output:
+
+Quantifier: forall
+Variable: x
+Predicate: student
+Argument: x
+Valid FOPC expression

@@ -1,0 +1,25 @@
+import nltk
+from nltk.wsd import lesk
+
+nltk.download("wordnet")
+nltk.download("punkt")
+
+sentence = "I went to the bank to deposit money."
+
+words = nltk.word_tokenize(sentence)
+
+sense = lesk(words, "bank")
+
+print("Word:", "bank")
+
+if sense:
+    print("Synset:", sense.name())
+    print("Meaning:", sense.definition())
+else:
+    print("Sense not found")
+
+    Sample Output:
+
+Word: bank
+Synset: depository_financial_institution.n.01
+Meaning: a financial institution that accepts deposits

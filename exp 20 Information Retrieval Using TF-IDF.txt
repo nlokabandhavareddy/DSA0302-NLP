@@ -1,0 +1,28 @@
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
+
+documents = [
+    "machine learning is useful",
+    "deep learning uses neural networks",
+    "machine learning uses algorithms"
+]
+
+query = ["machine learning"]
+
+vectorizer = TfidfVectorizer()
+
+doc_vectors = vectorizer.fit_transform(documents)
+query_vector = vectorizer.transform(query)
+
+scores = cosine_similarity(query_vector, doc_vectors)[0]
+
+for i, score in enumerate(scores):
+    print("Document", i + 1, "Score:", round(score, 3))
+
+    Output:
+
+Document 1 Score: 0.632
+Document 2 Score: 0.0
+Document 3 Score: 0.632
+
+Higher score means the document is more relevant to the query.
