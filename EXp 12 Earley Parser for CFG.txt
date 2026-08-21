@@ -1,0 +1,60 @@
+# Simple Earley Parser
+
+grammar = {
+    "S": [["NP", "VP"]],
+    "NP": [["Det", "N"]],
+    "VP": [["V", "NP"]],
+    "Det": [["the"], ["a"]],
+    "N": [["cat"], ["dog"]],
+    "V": [["sees"], ["likes"]]
+}
+
+def earley_parse(words):
+    chart = [set() for _ in range(len(words) + 1)]
+    chart[0].add(("S'", ("S",), 0, 0))
+
+    for i in range(len(words) + 1):
+        changed = True
+
+        while changed:
+            changed = False
+
+            for lhs, rhs, dot, start in list(chart[i]):
+
+                # Prediction
+                if dot < len(rhs) and rhs[dot] in grammar:
+                    for production in grammar[rhs[dot]]:
+                        item = (rhs[dot], tuple(production), 0, i)
+                        if item not in chart[i]:
+                            chart[i].add(item)
+                            changed = True
+
+                # Completion
+                elif dot == len(rhs):
+                    for item in list(chart[start]):
+                        l, r, d, s = item
+                        if d < len(r) and r[d] == lhs:
+                            new_item = (l, r, d + 1, s)
+                            if new_item not in chart[i]:
+                                chart[i].add(new_item)
+                                changed = True
+
+        # Scanning
+        if i < len(words):
+            for lhs, rhs, dot, start in chart[i]:
+                if dot < len(rhs) and rhs[dot] == words[i]:
+                    chart[i + 1].add((lhs, rhs, dot + 1, start))
+
+    return ("S'", ("S",), 1, 0) in chart[len(words)]
+
+sentence = "the cat sees a dog".split()
+
+if earley_parse(sentence):
+    print("Sentence is accepted")
+else:
+    print("Sentence is rejected")
+
+
+Output:
+
+Sentence is accepted

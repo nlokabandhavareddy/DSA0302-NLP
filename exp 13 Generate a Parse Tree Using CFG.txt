@@ -1,0 +1,34 @@
+import nltk
+
+grammar = nltk.CFG.fromstring("""
+S -> NP VP
+NP -> Det N
+VP -> V NP
+Det -> 'the' | 'a'
+N -> 'cat' | 'dog'
+V -> 'sees' | 'likes'
+""")
+
+parser = nltk.ChartParser(grammar)
+
+sentence = "the cat sees a dog".split()
+
+for tree in parser.parse(sentence):
+    print(tree)
+    tree.pretty_print()
+
+    Output:
+
+(S (NP (Det the) (N cat)) (VP (V sees) (NP (Det a) (N dog))))
+
+Tree structure:
+
+             S
+           /   \
+         NP     VP
+        / \     / \
+      Det  N   V   NP
+      |    |   |   / \
+     the  cat sees Det N
+                  |   |
+                  a  dog

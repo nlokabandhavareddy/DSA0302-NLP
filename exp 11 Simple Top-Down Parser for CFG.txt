@@ -1,0 +1,45 @@
+# Top-Down Parser
+
+grammar = {
+    "S": [["NP", "VP"]],
+    "NP": [["Det", "N"]],
+    "VP": [["V", "NP"]],
+    "Det": [["the"], ["a"]],
+    "N": [["cat"], ["dog"]],
+    "V": [["sees"], ["likes"]]
+}
+
+def parse(symbol, words, pos):
+    if symbol not in grammar:
+        if pos < len(words) and words[pos] == symbol:
+            return pos + 1
+        return None
+
+    for production in grammar[symbol]:
+        current = pos
+        success = True
+
+        for item in production:
+            current = parse(item, words, current)
+            if current is None:
+                success = False
+                break
+
+        if success:
+            return current
+
+    return None
+
+sentence = "the cat sees a dog".split()
+
+result = parse("S", sentence, 0)
+
+if result == len(sentence):
+    print("Sentence is accepted")
+else:
+    print("Sentence is rejected")
+
+
+    Output:
+
+Sentence is accepted
