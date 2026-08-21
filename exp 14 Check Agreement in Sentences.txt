@@ -1,0 +1,34 @@
+def check_agreement(sentence):
+    words = sentence.split()
+
+    if len(words) < 2:
+        return False
+
+    subject = words[0]
+    verb = words[1]
+
+    singular_subjects = ["he", "she", "it"]
+    plural_subjects = ["they", "we"]
+
+    singular_verbs = ["runs", "eats", "plays"]
+    plural_verbs = ["run", "eat", "play"]
+
+    if subject in singular_subjects and verb in singular_verbs:
+        return True
+
+    if subject in plural_subjects and verb in plural_verbs:
+        return True
+
+    return False
+
+
+sentence = "she runs"
+
+if check_agreement(sentence):
+    print("Subject-verb agreement is correct")
+else:
+    print("Subject-verb agreement is incorrect")
+
+    Output:
+
+Subject-verb agreement is correct

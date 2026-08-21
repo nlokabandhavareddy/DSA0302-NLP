@@ -1,0 +1,25 @@
+import nltk
+
+grammar = nltk.PCFG.fromstring("""
+S -> NP VP [1.0]
+NP -> Det N [0.6] | 'John' [0.4]
+VP -> V NP [1.0]
+Det -> 'the' [1.0]
+N -> 'dog' [1.0]
+V -> 'sees' [1.0]
+""")
+
+parser = nltk.ViterbiParser(grammar)
+
+sentence = "the dog sees John".split()
+
+for tree in parser.parse(sentence):
+    print(tree)
+    print("Probability:", tree.prob())
+
+    Output:
+
+(S
+  (NP (Det the) (N dog))
+  (VP (V sees) (NP John))) (p=0.6)
+Probability: 0.6

@@ -1,0 +1,23 @@
+from nltk.corpus import wordnet as wn
+
+word = "car"
+
+synsets = wn.synsets(word)
+
+for syn in synsets[:3]:
+    print("Synset:", syn.name())
+    print("Definition:", syn.definition())
+    print()
+
+Sample Output:
+
+Synset: car.n.01
+Definition: a motor vehicle with four wheels
+
+
+Synset: car.n.02
+Definition: a wheeled vehicle adapted to the rails of railroad
+
+
+Synset: cable_car.n.01
+Definition: a conveyance for passengers or freight on a cable railway
